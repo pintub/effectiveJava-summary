@@ -1,0 +1,28 @@
+-Item 26: Don’t use raw types/Don't erase generic type info                   //item26    
+    -Advt
+        -DISCOVER ERRORS AS SOON AS POSSIBLE AFTER THEY ARE MADE, IDEALLY AT COMPILE TIME. It saves server restart time.
+        -no need of explict type casting as compile time safe
+    -Exception of raw type usage:
+        -Using class objects, for example List.class, use raw type
+        -instanceof , object instanceof Set
+        -Instanstiating Java Array ,new E[] not allowed , reference E[] allowed.
+    -Type Erausre Summary
+        -Remove All Generic Type information 
+        -Add type casting which is implicit for programmers, explicit for compiler
+    -For compatibility, Java still supports raw type. BACKWARD COMPATIBILITY.
+-Item 27: Eliminate unchecked warnings
+    -Eliminate compiler warnings
+    -Suppress using (@SuppressWarnings("unchecked")) to remove log clutter and add comment why it is safe
+        -Use this annotation at minimal scope(local variable, method, class) .Example, @SuppressWarnings("unchecked") T[] result = (T[]) Arrays.copyOf(elements, size,..)....
+-Item 28: Prefer lists to arrays in terms of generics                                       //item28
+    -Array doesnt have generic safety at compile time , but fails at runtime "ArrayStoreException". Cause Array shuld know component type at runtime , show new E[] will fail.
+    -Tradeoff Performance
+-Item 29: Favor generic types /List<E> to be specific
+    -If class can work with different types , use generic type
+    -Object collection(Object[]/List<object>)  can be replaced by generic type to make type safe
+-Item 30: Favor generic methods
+-Item 31: Use bounded wildcards to increase API flexibility
+    -PECS producer-extends, consumer-super (PECS)
+    -Comparator/Comparaable are always consumers .Example, public static <T extends Comparable<T>> T max(List<T> list), USE  public static <T extends Comparable<? super T>> T max(List<? extends T> list)
+-Item 32: Combine generics and varargs judiciously
+    

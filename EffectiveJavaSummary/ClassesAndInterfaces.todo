@@ -1,0 +1,76 @@
+-Exported API vs implementation
+-Java in generic vs BIZX(-api,-service)
+
+-Item 15: Minimize the accessibility of classes and members                             //Item15
+    -Make each class or member as inaccessible as possible.
+    -If a class/members are public/protected, you are obligated to support it forever to maintain compatibility . If private/default ,you can change enhance/change without thinking about clients
+    -If a package-private top-level class or interface is used by only one class, consider making the top-level class a private static nested class of the sole class that uses it
+    -For testcases, promote from private to default, not protected
+    -Instance and static variable should not be public, Cause
+        -Support it forever to maintain compatibility
+        -It can be mutated
+        -Can't restrict field value and can't know when accessed, setter has more control
+        -Can't change field internal representation ,getter has more control
+    -Exception , If you use final and immutable reference
+        -But still doesnt have getter and setter flexibility
+-Item 16: In public classes, use Getter methods, not public fields
+    -if a class is package-private or is a private nested class, there is nothing inherently wrong with public/protected data fields .This approach generates less visual clutter than the Getter-method approach
+        -Drawback :Yes, it is not exposed outside , But other problems will be there
+-Item 17: Minimize mutability                                                               //Item17
+    -Advt
+        -Thread Safety, no synchronization needed
+        -Can be shared and reused
+    -Disadvt
+        -They require a separate object for each distinct value
+        -Solution , Create mutable companion class for multistep mutation ,example StringBuilder
+    -Rules to create immutable class
+        -No Setters
+        -Final Class
+        -All field final
+        -All field private
+        -No Getter for mutable component
+-Item 18: Favor composition over Class inheritance  (Client point of View)
+    -Inside package(When not exported) , inheritance is fine as developer has control over classes in package
+    -Inheritance Problem (across package boundaries)
+        -Overriding method
+            -INHERITANCE VIOLATES IMPLEMENTATION HIDING .Example ,Self-use of overridable methods, one method of superclass calls other method                                         //Item18
+            -Superclass can add new methods in subsequent releases .Example, If you want to keep count and new add method is introduced
+        -Not Overriding method
+            -If the superclass acquires a new method in a subsequent release and you have the bad luck to have given the subclass a method with the same signature and a different return type
+    -Use composition and forwarding
+-Item 19: Design and document for inheritance or else prohibit it by making final  (API Class point of View)  
+    -If Decided for non-final
+        -Selfuse, then document it using @implSpec
+        -How to break self-use, if a() calls b() and both overrirable, then create a private helper c() ,call from both a() and b()                                                     
+        -Constructors/Clone()/readObject() must not invoke overridable methods          //Item19
+    -Else mark non-extensible
+        -Final
+        -private Constructors        
+-Inheritance Summary WRT BIZX
+    -Inside "Service" module , use inheritance 
+    -Inside "api" module , check if class needs to be subclassed by client , if no final .Else take care of above points
+    -If using "api" as client, use composition
+-Item 20: Prefer interfaces to abstract classes
+    -Interface Advt
+        -Multiple inheritance not allowed for classes
+        -Can have default method from java >8
+        -Existing classes can easily implement a new interface.
+        -Interfaces allow for the construction of nonhierarchical type frameworks to add behavior
+    -Abstract class Advt
+        -Can have state field
+        -Can define Object class methods
+    -Use mix of interace and Abstarct class
+        -Template Method pattern
+        -Interace with default and Abstarct method <--(implements)-- Abstarct with state field or Object class method 
+-Item 21: Design interfaces for posterity
+    -Item 18 issues still with interface ,so break self-use pattern(uese static methods) and be careful while adding new default methods
+-Item 22: Use interfaces only to define types    
+    -Don't use interface to define constants(public static final)
+    -Use noninstantiable static utility class or Enum
+-Item 23: Prefer class hierarchies to tagged classes                      //Item 23
+    -Violates O in SOLID principle
+    -User hierarchies
+-Item 24: Favor static member classes over nonstatic
+    -non-static class instance stores hidden referene of outer class instance, SO use non-static inner class
+-Item 25: Limit source files to a single top-level class
+    -In a .java file use only one public class

@@ -1,0 +1,68 @@
+-Item 1: Consider static factory methods instead of constructors @done
+    -Advt static factory methods @done
+        -It can have meaningful name, no parameter restrcition such as constructors           //item1.example1 @done
+        -More control over number of instances, example singleton return cached instance      //item1.Example2 @done
+        -It can return an object of any non-public subtype of their return type ,Example,Collection-Collections. Useful when there are many non-public classes ,define factory in interface. @done
+    -Disadvantages @done
+        -Not highlighted as constructors Example,ArrayList JavaDoc @done
+    -Naming Conventions @done
+        -from, of, valueOf , getInstance, newInstance(new instance always), get<Class>,new<Class>, .<class>Collections.list() @done
+
+
+-Item 2: Consider a Static builder when faced with many constructor parameters @done
+    -Static factories and constructors don't scale for large number of properties @done
+    -n, 2^n @done
+    -Alternative @done
+        -Telescoping constructor pattern, constructor with all required properties and add optional property incrementally.http://code.successfactors.com/source/xref/trunk/idl-analytics-api/idl-analytics-api-service/src/main/java/com/successfactors/analytics/subject/builder/SubDomainSchemaBuilder.java#555 ,Disadvt Not easily usable @done
+        -Use of setters , Disadvt object construction not consise, not mutable because of public setter @done
+    -Builder pattern Example w/ and w/o Builder class                                                  //item2 @done
+    -Builder pattern Types @done
+        -Eager Object construction @done
+        -Lazy Object construction with build() method,advt parameter validity check before construction @done
+    -Builder pattern method naming conventions @done
+        -with<propertyName>() @done
+        -<propertyName>() @done
+
+
+-Item 3: Enforce the singleton property with a private constructor or an enum type @done
+    -For Stateless classes @done
+    -Take care of singleton attacks Reflection , Serialization                                   //item3.eg1 @done
+    -Enum for singleton                                                                          //item3.eg2 @done
+
+
+-Item 4:Enforce noninstantiability with a private constructor for Util classes @done
+
+
+-Item 5: Prefer dependency injection to hardwiring resources @done
+    -setter injection/constructor injection @done
+
+
+-Item 6: Avoid creating unnecessary objects @done
+    -Immutable objects are easy to re-use @done
+    -new String("xyz"), String = "xyz" @done
+    -Avoid autoboxing if primitive is fine @done
+    -Reuse Pattern object @done
+
+
+-Item 7: Eliminate obsolete object references                                   //item7 @done
+    -whenever a class manages its own memory, the programmer should be alert for memory leaks @done
+
+
+-Item 8: Avoid finalizers and cleaners @done
+    -Disadvt @done
+        -Perf issue @done
+        -Security issue @done
+    -Implement Autocloseable , and let client use close() or client can use try-with-resource @done
+
+
+-Item 9: Prefer try-with-resources to try-finally for Autocloseable               //item9 @done
+    -Disadvt of try-finally @done
+        -Client may forget close() @done
+        -Multiple resources complicates code @done
+        -finally exception suppresses try exception @done
+
+
+
+
+
+

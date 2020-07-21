@@ -1,0 +1,42 @@
+-Item 10: Obey the general contract when overriding equals
+    -Contract
+        -Reflexive x.equals(x)
+        -Symmetric x.equals(y) <=> y.equals(x)
+        -Transitive x.equals(y) and y.equals(z) => then x.equals(z)
+        -Consistent x.equals(y) always retuns consistent result
+        -x.equals(null) = false
+    -Manual implementation
+        -Primitive fields(except FLoat and Double) whose type is not float or double, use the  == operator for comparisons
+        -float use Float.compare() rather Float.equals ,cause later does auto-boxing
+        -Double use Double.compare() 
+        -Object Reference ,use equals() recursively
+        -Arrays.equals()
+    -Prefer using IDEs' to generate equals
+-Item 11: Always override hashCode when you override equals                                          //item11
+    -Contract
+        -Consistent always
+        -If two objects are equal according to the equals(Object) method,then calling hashCode on the two objects must produce the same integer result.
+        -If two objects are unequal according to the equals(Object) method,it is not required that calling hashCode on each of the objects must produce distinct results. However, the programmer should be aware that producing distinct results for unequal objects may improve the performance of hash tables.
+    -Manual implementation
+        -Primitive eg,Integer.hashCode()
+        -Object Reference ,use hashCode() recursively
+        -Arrays.hashCode()
+    -Prefer using IDEs' to generate equals
+    -For immutable class, cache hashCode
+-Item 12: Always override toString
+-Item 13: Override clone judiciously                       //item13
+    -Disadvt of Cloneable
+        -Flaw of Cloneable interface, doesnt have clone()
+        -Boilerplate of handling CloneNotSupportedException, should have been unchecked Exception as it is programmatic Exception
+        -Does shallow copying, Java Doc Object#clone By convention, the object returned by this method should be independent of this object (which is being cloned).  To achieve this independence,it may be necessary to modify one or more fields of the object returned by {@code super.clone} before returning it.
+    -Use Cloneable and clone() for primitive only class or immutable class
+    -Use copyConstructor or static copy factory method for mutable class
+    -cloning of a thirdparty library class 
+        -static method in Util class
+        -Using external lib like Google Gson, but has performance issues
+-Item 14: Consider implementing Comparable                             //item14
+    -Similar to equals
+        -It is strongly recommended, but not required, that (x.compareTo(y) == 0) == (x.equals(y)). Generally speaking, any class that implements the Comparable interface and violates this condition should clearly indicate this fact. The recommended language is “Note:This class has a natural ordering that is inconsistent with equals.” Example BigDecimal
+    -Implementation
+        -primitive ,eg Integer.comapre()
+        -object reference, use compareTo recursively
