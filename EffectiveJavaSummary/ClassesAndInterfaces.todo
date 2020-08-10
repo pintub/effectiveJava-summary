@@ -61,7 +61,7 @@
         -Can define Object class methods
     -Use mix of interace and Abstarct class
         -Template Method pattern
-        -Interace with default and Abstarct method <--(implements)-- Abstarct with state field or Object class method 
+        -Interace with default and Abstarct method <--(implements)-- Abstarct class with state field, private methods or Object class method
 -Item 21: Design interfaces for posterity
     -Item 18 issues still with interface ,so break self-use pattern(uese static methods) and be careful while adding new default methods
 -Item 22: Use interfaces only to define types    
