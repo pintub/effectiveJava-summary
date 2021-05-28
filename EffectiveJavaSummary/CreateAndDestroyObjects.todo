@@ -14,7 +14,7 @@
     -n, 2^n @done
     -Alternative @done
         -Telescoping constructor pattern, constructor with all required properties and add optional property incrementally.http://code.successfactors.com/source/xref/trunk/idl-analytics-api/idl-analytics-api-service/src/main/java/com/successfactors/analytics/subject/builder/SubDomainSchemaBuilder.java#555 ,Disadvt Not easily usable @done
-        -Use of setters , Disadvt object construction not consise, not mutable because of public setter @done
+        -Use of setters , Disadvt object construction not consise, not immutable because of public setter @done
     -Builder pattern Example w/ and w/o Builder class                                                  //item2 @done
     -Builder pattern Types @done
         -Eager Object construction @done
