@@ -11,6 +11,13 @@ public class NutritionFactsWithBuilder {
     private int calories;
     private int fat;
 
+    private NutritionFactsWithBuilder(Builder builder) {
+        this.calories = builder.calories;
+        this.fat = builder.fat;
+        this.servingSize = builder.servingSize;
+        this.servings = builder.servings;
+    }
+
     //TODO implement Builder
     public static class Builder{
         //Required properties
@@ -42,11 +49,5 @@ public class NutritionFactsWithBuilder {
             return new NutritionFactsWithBuilder(this);
         }
     }
-
-    private NutritionFactsWithBuilder(Builder builder) {
-        this.calories = builder.calories;
-        this.fat = builder.fat;
-        this.servingSize = builder.servingSize;
-        this.servings = builder.servings;
-    }
+    
 }
