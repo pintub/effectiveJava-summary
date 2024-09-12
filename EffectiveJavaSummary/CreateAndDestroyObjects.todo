@@ -25,7 +25,7 @@
 
 
 -Item 3: Enforce the singleton property with a private constructor or an enum type @done
-    -For Stateless classes @done
+    -For Stateless classes(False), It can be for stateful class also, example a singleton cached object across the application @done
     -Take care of singleton attacks Reflection , Serialization                                   //item3.eg1 @done
     -Enum for singleton                                                                          //item3.eg2 @done
 
