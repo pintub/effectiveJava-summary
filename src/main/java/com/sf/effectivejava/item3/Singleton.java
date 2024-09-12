@@ -12,7 +12,7 @@ public class Singleton implements Serializable {
         }
     }
 
-    public static Singleton getInstance(){//Prevent multi-threading issue
+    public static Singleton getInstance(){//Double NULL Check, synchronized with class-object
         if(instance == null){
             synchronized (Singleton.class) {
                 if(instance == null) {
