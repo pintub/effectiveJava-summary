@@ -7,7 +7,7 @@ public class Singleton implements Serializable {
     private static Singleton instance = null;
 
     private Singleton(){
-        if(instance != null){
+        if(instance != null){//2nd time onwards whenever called, Throw ex
             throw new IllegalStateException();
         }
     }
